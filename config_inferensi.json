@@ -1,0 +1,24 @@
+{
+  "model_name": "indolem/indobert-base-uncased",
+  "max_len": 512,
+  "head_len": 128,
+  "tail_len": 382,
+  "n_labels": 3,
+  "label_map": {
+    "0": "pidana",
+    "1": "bebas",
+    "2": "lepas"
+  },
+  "label_desc": {
+    "pidana": "Terdakwa dinyatakan TERBUKTI bersalah dan dijatuhi hukuman pidana.",
+    "bebas": "Terdakwa dinyatakan TIDAK TERBUKTI secara sah dan meyakinkan. Terdakwa dibebaskan.",
+    "lepas": "Perbuatan terdakwa terbukti, namun BUKAN merupakan tindak pidana. Terdakwa dilepaskan."
+  },
+  "seksi_input": [
+    "riwayat_dakwaan",
+    "fakta",
+    "pertimbangan_hukum"
+  ],
+  "eksperimen": "ExpE_focal_weight_aug",
+  "deskripsi": "Model BERT prediksi amar putusan pidana Indonesia (pidana/bebas/lepas)"
+}

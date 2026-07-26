@@ -1,0 +1,17 @@
+# Model besar — di-host di Hugging Face Hub (Scabiosa/indobert-law-classifier)
+model_state.pt
+ExpA_hf/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Streamlit
+.streamlit/secrets.toml
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
