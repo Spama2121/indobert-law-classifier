@@ -12,28 +12,6 @@ Fine-tuning **IndoBERT** (`indolem/indobert-base-uncased`) untuk mengklasifikasi
 - Menambahkan Focal Loss + Class Weighting di atas augmentasi **tidak membantu**, bahkan menurunkan performa secara signifikan (p = 0,0023 dan p = 0,0095).
 - Model terbaik adalah **Exp A (augmentasi saja)**.
 
-## Arsitektur Sistem
-
-```mermaid
-flowchart LR
-    A[Dataset Indo-Law<br/>XML putusan] --> B[Parsing XML<br/>riwayat_dakwaan + fakta<br/>+ pertimbangan_hukum]
-    B --> C[Cleaning teks<br/>& pelabelan 3 kelas]
-    C --> D[Split<br/>train / val / test]
-    D --> E[Augmentasi teks<br/>hanya pada train<br/>kelas bebas & lepas]
-    E --> F[Tokenisasi<br/>head 128 + tail 382 token]
-    F --> G[Fine-tuning IndoBERT<br/>CE / Class Weight / Focal Loss]
-    G --> H[Evaluasi test set<br/>F1 Macro, MCC, PR-AUC,<br/>McNemar]
-    G --> I[model_final/<br/>model_state.pt + tokenizer]
-    I --> J[Aplikasi Streamlit<br/>wizard 3 langkah]
-```
-
-Alur aplikasi Streamlit:
-
-```mermaid
-flowchart LR
-    S1[Step 1<br/>Input teks / upload .txt] --> S2[Step 2<br/>Cleaning, truncation,<br/>tokenisasi, prediksi] --> S3[Step 3<br/>Label, confidence,<br/>distribusi probabilitas]
-```
-
 ## Dataset dan Pra-pemrosesan
 
 - Sumber: [`ir-nlp-csui/indo-law`](https://huggingface.co/datasets/ir-nlp-csui/indo-law).
@@ -55,7 +33,7 @@ Seluruh angka di bawah disalin dari keluaran notebook pada test set (3.370 dokum
 | Exp D | 0,8423 | 0,7356 | 0,8458 | 0,6829 | 0,8485 | 0,6667 | 0,8750 | 0,7689 | 0,8871 |
 | Exp E | 0,7922 | 0,6996 | 0,7884 | 0,6753 | 0,7059 | 0,6190 | 0,7500 | 0,7761 | 0,8627 |
 
-![Ablation study](docs/images/ablation_study.png)
+![Ablation study](ablation_study.png)
 
 ### Uji Signifikansi McNemar (koreksi kontinuitas, α = 0,05)
 
